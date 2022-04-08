@@ -1,4 +1,17 @@
 
-#offer .card{
-    border-radius: 0.625rem;
+#offer .card-title{
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+#offer .card h1{
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+
+#offer a{
+   width: 100%;
+   display: inline-block;
+   border-radius: 50px;
 }
