@@ -15,26 +15,33 @@ export class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { isShowDropdown: false, isOpen: false, items: [], error: null, isLoading: false };
-    this.handleDropdown = this.handleDropdown.bind(this);
-    this.handleSideMenu = this.handleSideMenu.bind(this);
+    this.state = { isShowDropdown: false, isOpen: false, items: [], error: null, isLoading: false,isNotification: false,notificationArr:[]};
   }
 
   async componentDidMount() {
-    const url = `http://localhost:3004/site`;
+    const siteUrl = `http://localhost:3004/site`;
+    const notificationUrl = "http://localhost:3004/message";
     try {
-      await fetch(url).then(response => response.json()).then(data => {
+      Promise.all([
+        await fetch(siteUrl).then(response => response.json()).then(data => {
         this.setState({ items: data, isLoading: true, error: null });
+      }),
+      await fetch(notificationUrl).then(response => response.json()).then(data => {
+        this.setState({ notificationArr: data, isLoading: true, error: null });
       })
+      ])
     } catch (error) {
       this.setState({ isLoading: true, error });
       console.error(error);
     }
-
   }
 
   handleSideMenu = () => {
     this.setState(prevState => ({ isOpen: !prevState.isOpen }));
+  }
+
+  handleNotification = () => {
+    this.setState(prevState => ({ isNotification : !prevState.isNotification  }));
   }
 
   handleDropdown = () => {
@@ -42,7 +49,7 @@ export class App extends Component {
   }
 
   render() {
-    const {items,error,isLoading} = this.state
+    const {items,error,isLoading,isNotification,notificationArr} = this.state
     if(error){
       return <div className="text-danger">Error:{error.message} </div>
     }else if(!isLoading){
@@ -56,7 +63,9 @@ export class App extends Component {
       <BrowserRouter>
         <div className="row gx-0">
           <div className="col-2"><AsideNav openMenu={this.state.isOpen} navData={items}/></div>
-          <div className={`${this.props.openMenu ? 'col-10' : 'col-12'}`}><Header menu={this.state.isShowDropdown} handleSideBar={this.handleSideMenu} handleDropdown={this.handleDropdown} />
+          <div className={`${this.props.openMenu ? 'col-10' : 'col-12'}`}>
+          <Header menu={this.state.isShowDropdown} handleSideBar={this.handleSideMenu} handleDropdown={this.handleDropdown}
+           handleNotification={this.handleNotification} isNotification={isNotification} notificationArr={notificationArr} />
             <main style={this.state.isOpen ? { marginLeft: '0%', transition: 'all 0.5s' } : { marginLeft: '16.66666667%', transition: 'all 0.5s' }}>
               <Routes>
                 <Route path="/" element={<Home />} />

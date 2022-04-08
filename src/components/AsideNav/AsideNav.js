@@ -3,12 +3,13 @@ import { NavLink } from 'react-router-dom';
 import './asideNav.css';
 
 export default class AsideNav extends Component {
+  
   render() {
 
     return (
-      <aside className={`bg-primary ${this.props.openMenu ? 'close' : ''}`}>
+      <aside className={`bg-primary ${this.props.openMenu ? 'close' :''}`}>
         <nav className="navbar py-3 d-flex justify-content-center mb-5">
-          <NavLink className="navbar-brand text-white m-0" to="/"><h4 className="mb-0 fw-bold">React-Dashboard</h4></NavLink>
+          <NavLink className="navbar-brand text-white m-0" to="/"><h4 className="mb-0 fw-bold"><i className="fa-brands fa-react me-3"></i>Application</h4></NavLink>
         </nav>
 
         <ul className="nav flex-column ps-3">

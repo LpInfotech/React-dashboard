@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 import './header.css';
 
 export class Header extends Component {
+ 
   render() {
 
     return (
@@ -17,19 +19,22 @@ export class Header extends Component {
                   <i className="fa-solid fa-magnifying-glass px-2 fa-lg"></i>
                 </div>
               </li>
-              <li className="nav-item mx-2 position-relative">
+              <li className="nav-item mx-2 position-relative" onClick={this.props.handleNotification}>
                 <div className="nav-link p-2 text-dark bg-light shadow-sm rounded position-relative custom-dropdown">
                   <i className="fa-solid fa-bell px-2 fa-lg"></i>
                   <i className="fa-solid fa-circle text-danger shadow-sm fa-circle-icon fa-lg me-2 fa-notification-icon"></i>
                 </div>
-                <div className="custom-dropdown-menu shadow-sm rounded collapse bg-white mt-3 border position-absolute">
+                <div className={`custom-dropdown-menu shadow-sm rounded collapse bg-white mt-3 border position-absolute ${this.props.isNotification ? 'show' : ' '}`}>
                   <ul className="list-unstyled">
-                    <li>
-                      <a className="nav-link text-dark border-bottom px-4" href="#">
+                  {this.props.notificationArr.map(message =>{
+                  return  <li key={message.id}>
+                      <Link className="nav-link text-dark border-bottom px-4 d-flex" to={message.url}>
                         <span> <i className="fa-solid fa-circle text-danger shadow-sm fa-circle-icon fa-notification-list me-3"></i></span>
-                        <span className="small"><span className="fw-bold">Test</span> Test</span>
-                      </a>
+                        <span className="small d-flex flex-column"><span className="fw-bold">{message.title}</span>{message.message}</span>
+                      </Link>
                     </li>
+                  })
+                  }
                   </ul>
                 </div>
               </li>

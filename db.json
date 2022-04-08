@@ -268,5 +268,25 @@
       "icon" : "fa-solid fa-tag",
       "url": "offer"
     }
-  ]
+  ],
+
+  "message": [{
+    "id": "1",
+    "title": "New Cusomers",
+    "message": "5 customers registered",
+    "url": "/"
+  },
+  {
+    "id": "2",
+    "title": "New Order",
+    "message" : "You have recived your orders.",
+    "url": "order"
+  },
+  {
+    "id": "3",
+    "title": "File Generated",
+    "message" : "You have generate a new file",
+    "url": "statistic"
+  }
+]
 }
