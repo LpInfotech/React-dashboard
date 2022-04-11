@@ -66,7 +66,7 @@ export class App extends Component {
     }
     return (
       <BrowserRouter>
-        <div className="row gx-0">
+        <div className="row gx-0 flex-column">
           <div className="col-2"><AsideNav openMenu={this.state.isOpen} navData={items}/></div>
           <div className={`${this.props.openMenu ? 'col-10' : 'col-12'}`}>
           <Header menu={this.state.isShowDropdown} handleSideBar={this.handleSideMenu} handleDropdown={this.handleDropdown}
@@ -82,9 +82,9 @@ export class App extends Component {
                 <Route path="*" element={<NotFound/> }/>
               </Routes>
             </main>
+            <Footer />
           </div>
         </div>
-        <Footer />
       </BrowserRouter>
     )
   }
