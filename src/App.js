@@ -9,18 +9,20 @@ import Product from './pages/Product/Product';
 import Statistic from './pages/Statistic/Statistic';
 import Stock from './pages/Stock/Stock';
 import Order from './pages/Order/Order';
+import NotFound from "./pages/NotFound/NotFound";
 
 
 export class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { isShowDropdown: false, isOpen: false, items: [], error: null, isLoading: false,isNotification: false,notificationArr:[]};
+    this.state = { isShowDropdown: false, isOpen: false, items: [], error: null, isLoading: false,isNotification: false,notificationArr:[],tableData:[]};
   }
 
   async componentDidMount() {
     const siteUrl = `http://localhost:3004/site`;
     const notificationUrl = "http://localhost:3004/message";
+    const userUrl = `http://localhost:3004/users`;
     try {
       Promise.all([
         await fetch(siteUrl).then(response => response.json()).then(data => {
@@ -28,6 +30,9 @@ export class App extends Component {
       }),
       await fetch(notificationUrl).then(response => response.json()).then(data => {
         this.setState({ notificationArr: data, isLoading: true, error: null });
+      }),
+      await fetch(userUrl).then(response => response.json()).then(responseData =>{
+      this.setState({tableData:responseData, isLoading: true, error: null});
       })
       ])
     } catch (error) {
@@ -49,11 +54,11 @@ export class App extends Component {
   }
 
   render() {
-    const {items,error,isLoading,isNotification,notificationArr} = this.state
+    const {items,error,isLoading,isNotification,notificationArr,tableData} = this.state
     if(error){
       return <div className="text-danger">Error:{error.message} </div>
     }else if(!isLoading){
-    return <div className="text-center">
+    return <div className="text-center position-absolute top-50 start-50 translate-middle">
     <div className="spinner-border" role="status">
       <span className="visually-hidden">Loading...</span>
     </div>
@@ -66,19 +71,15 @@ export class App extends Component {
           <div className={`${this.props.openMenu ? 'col-10' : 'col-12'}`}>
           <Header menu={this.state.isShowDropdown} handleSideBar={this.handleSideMenu} handleDropdown={this.handleDropdown}
            handleNotification={this.handleNotification} isNotification={isNotification} notificationArr={notificationArr} />
-            <main style={this.state.isOpen ? { marginLeft: '0%', transition: 'all 0.5s' } : { marginLeft: '16.66666667%', transition: 'all 0.5s' }}>
+            <main className="px-3" style={this.state.isOpen ? { marginLeft: '0%', transition: 'all 0.5s' } : { marginLeft: '16.66666667%', transition: 'all 0.5s' }}>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/offer" element={<Offer />} />
                 <Route path="/order" element={<Order />} />
                 <Route path="/product" element={<Product />} />
-                <Route path="/statistic" element={<Statistic />} />
+                <Route path="/statistic" element={<Statistic tableData={tableData} />} />
                 <Route path="/stock" element={<Stock />} />
-                <Route path="*" element={
-                <div style={{ padding: "1rem" }}>
-                  <p>There's nothing here!</p>
-                </div>
-              }/>
+                <Route path="*" element={<NotFound/> }/>
               </Routes>
             </main>
           </div>

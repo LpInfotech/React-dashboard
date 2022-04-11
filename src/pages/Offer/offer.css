@@ -9,9 +9,10 @@
     margin-bottom: 18px;
 }
 
-
-#offer a{
+#offer .card a{
    width: 100%;
    display: inline-block;
    border-radius: 50px;
 }
+
+

@@ -20,6 +20,7 @@ header .custom-dropdown-menu ul{
 
 header .custom-dropdown-menu {
     right: 0;
+    z-index: 777;
 }
 
 header .fa-notification-icon{
