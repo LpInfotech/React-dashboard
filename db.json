@@ -229,64 +229,70 @@
         "catchPhrase": "Centralized empowering task-force",
         "bs": "target end-to-end models"
       }
+    },
+    {
+      "name": "test",
+      "username": "hunder",
+      "email": "hunder",
+      "id": 11
     }
   ],
   "site": [
     {
       "id": "1",
       "title": "dashboard",
-      "icon" : "fa-solid fa-chart-line",
+      "icon": "fa-solid fa-chart-line",
       "url": "/"
     },
     {
       "id": "2",
       "title": "order",
-      "icon" : "fa-solid fa-cart-shopping",
+      "icon": "fa-solid fa-cart-shopping",
       "url": "order"
     },
     {
       "id": "3",
       "title": "statistic",
-      "icon" : "fa-solid fa-chart-pie",
+      "icon": "fa-solid fa-chart-pie",
       "url": "statistic"
     },
     {
       "id": "4",
       "title": "product",
-      "icon" : "fa-solid fa-box-open",
+      "icon": "fa-solid fa-box-open",
       "url": "product"
     },
     {
       "id": "5",
       "title": "stock",
-      "icon" : "fa-solid fa-money-bill-trend-up",
+      "icon": "fa-solid fa-money-bill-trend-up",
       "url": "stock"
     },
     {
       "id": "6",
       "title": "offer",
-      "icon" : "fa-solid fa-tag",
+      "icon": "fa-solid fa-tag",
       "url": "offer"
     }
   ],
-
-  "message": [{
-    "id": "1",
-    "title": "New Cusomers",
-    "message": "5 customers registered",
-    "url": "/"
-  },
-  {
-    "id": "2",
-    "title": "New Order",
-    "message" : "You have recived your orders.",
-    "url": "order"
-  },
-  {
-    "id": "3",
-    "title": "File Generated",
-    "message" : "You have generate a new file",
-    "url": "statistic"
-  }
-]
+  "message": [
+    {
+      "id": "1",
+      "title": "New Cusomers",
+      "message": "5 customers registered",
+      "url": "/"
+    },
+    {
+      "id": "2",
+      "title": "New Order",
+      "message": "You have recived your orders.",
+      "url": "order"
+    },
+    {
+      "id": "3",
+      "title": "File Generated",
+      "message": "You have generate a new file",
+      "url": "statistic"
+    }
+  ]
 }

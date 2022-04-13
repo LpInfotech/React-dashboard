@@ -23,7 +23,7 @@ export class Table extends Component {
                             <td>{username}</td>
                             <td>{email}</td>
                             <td><a href="#" className="btn btn-warning me-2">Edit</a>
-                            <a href="#" className="btn btn-danger">Delete</a>
+                            <button onClick={()=>{this.props.updateList(id)}} className="btn btn-danger">Delete</button>
                             </td>
                         </tr>
                     })}

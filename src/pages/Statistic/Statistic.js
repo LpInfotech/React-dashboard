@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import Table from '../../components/Table/Table'
+import React, { Component } from 'react';
+import {Link} from "react-router-dom";
+import Table from '../../components/Table/Table';
 
 export class Statistic extends Component {
   render() {
@@ -13,13 +14,13 @@ export class Statistic extends Component {
               </p>
             </div>
             <div className="col-12">
-            <div class="card">
+            <div className="card">
             <div className="card-header text-primary fw-bold">Data Table With Crud</div>
             <div className="card-body">
             <div className="text-end">
-                  <a href="#" className="btn btn-success my-4"><i className="fas fa-plus fa-fw me-2"></i>Add Record</a>
+                  <Link to="/adduser" className="btn btn-success my-4"><i className="fas fa-plus fa-fw me-2"></i>Add Record</Link>
                   </div>
-          <Table tableData={this.props.tableData}/>
+          <Table tableData={this.props.tableData} updateList={this.props.updateList}/>
           </div>
           </div>
             </div>
